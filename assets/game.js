@@ -3,11 +3,11 @@ const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth / 2;
 canvas.height = window.innerHeight / 1.5;
-if(innerWidth == '768') {
+if(innerWidth < '768') {
   canvas.width = innerWidth * 0.9;
 }
 if(innerWidth < '425') {
-  canvas.height = innerHeight / 1.8;
+  canvas.height = innerHeight / 2;
 }
 w = canvas.width;
 h = canvas.height;
@@ -41,8 +41,8 @@ class GameBoard {
       x: w * 0.5,
       y: Math.random() * (h - w * 0.015) + w * 0.015,
       r: w * 0.015,
-      vx: -1,
-      vy: 1,
+      vx: -2,
+      vy: 2,
     };
     this.score = 0;
     this.level = 1;
@@ -95,11 +95,11 @@ class GameBoard {
   draw = (color) => {
     canvas.width = window.innerWidth / 2;
     canvas.height = window.innerHeight / 1.5;
-    if(innerWidth <= 768) {
+    if(innerWidth <= '768') {
       canvas.width = innerWidth * 0.9;
     }
     if(innerWidth < '425') {
-      canvas.height = innerHeight / 1.8;
+      canvas.height = innerHeight / 2;
     }
     w = canvas.width;
     h = canvas.height;
@@ -110,9 +110,6 @@ class GameBoard {
     this.drawBall();
     this.drawScore();
     this.drawLevel();
-  };
-  drawStart = () => {
-    this.draw();
   };
   drawGameOver = () => {
     // "#272343"
@@ -229,27 +226,30 @@ const init = () => {
   body.addEventListener("keydown", (e) => {
     game.moveBoxes(e);
   });
-  let id;
+  let id, t = 0, id2;
   controls.querySelector('.key-down').addEventListener('touchstart', () => {
-    id = setInterval(game.moveBoxesTouch(1), 10);
+    id = setInterval(game.moveBoxesTouch(1), 1000);
   });
   controls.querySelector('.key-down').addEventListener('touchend', () => {
     clearInterval(id);
+    clearInterval(id2);
+    console.log(t);
+    t = 0;
   });
   controls.querySelector('.key-up').addEventListener('touchstart', () => {
-    id = setInterval(game.moveBoxesTouch(2), 10);
+    id = setInterval(game.moveBoxesTouch(2), 100);
   });
   controls.querySelector('.key-up').addEventListener('touchend', () => {
     clearInterval(id);
   });
   controls.querySelector('.key-left').addEventListener('touchstart', () => {
-    id = setInterval(game.moveBoxesTouch(3), 10);
+    id = setInterval(game.moveBoxesTouch(3), 100);
   });
   controls.querySelector('.key-left').addEventListener('touchend', () => {
     clearInterval(id);
   });
   controls.querySelector('.key-right').addEventListener('touchstart', () => {
-    id = setInterval(game.moveBoxesTouch(4), 10);
+    id = setInterval(game.moveBoxesTouch(4), 100);
   });
   controls.querySelector('.key-right').addEventListener('touchend', () => {
     clearInterval(id);
