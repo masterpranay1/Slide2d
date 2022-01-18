@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --font-1 : 'Poppins', sans-serif;
+    --font-2 : 'Roboto', sans-serif;
+}
+body {
+    font-family: var(--font-1);
+    background: #eeeeee;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+header {
+    padding: 0.5em 6em;
+    background: #ffe;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+.heading {
+    font-size: 2em;
+    font-weight: 700;
+}
+.heading span {
+    color: #fd0;
+}
+.themeBox {
+    display: flex;
+    margin-left: auto;
+}
+.themeBox .theme {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: var(--theme);
+    margin-left: 1em;
+    border : transparent 1px solid;
+    cursor: pointer;
+}
+.theme1 {
+    --theme : #fd0;
+}
+.theme2 {
+    --theme : #e3f6f5;
+}
+.theme3 {
+    --theme : #f3a;
+}
+.theme.theme-active {
+    border : #006 1px solid;
+}
+@media (max-width : 425px) {
+    header {
+        padding: 0.5em 1em;
+    }
+    .heading {
+        font-size: 1.8em;
+    }
+}
+.gameDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 50vw;
+    margin: 1em auto;
+}
+.gameDetails h2 {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+@media (max-width : 768px) {
+    .gameDetails {
+        width: 90vw;
+    }
+    .gameDetails h2 {
+        font-size : 1.2em;
+    }
+}
+@media (max-width : 425px) {
+    .gameDetails h2 {
+        font-size: 1em;
+    }
+}
+.gameDetails h2 span {
+    font-weight: 500;
+}
+canvas {
+    position: relative;
+    /* border: 1px solid red; */
+    width: auto;
+    margin: 0em auto;
+}
