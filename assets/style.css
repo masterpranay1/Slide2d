@@ -101,3 +101,40 @@ canvas {
     width: auto;
     margin: 0em auto;
 }
+
+section.controls {
+    width: fit-content;
+    margin: 1em auto;
+    display: grid;
+    grid-gap : 0.5em;
+    grid-template-areas: 
+    '. up .'
+    'left down right';
+    padding: 0.1em;
+}
+section.controls > div {
+    padding: 0.4em 0.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: hsl(51, 100%, 51%);
+    background: #272343;
+    border-radius: 8px;
+}
+section.controls div.key-up {
+    grid-area : up;
+}
+section.controls div.key-down {
+    grid-area : down;
+}
+section.controls div.key-left {
+    grid-area : left;
+}
+section.controls div.key-right {
+    grid-area : right;
+}
+@media (min-width : 768px) {
+    section.controls {
+        display: none;
+    }
+}

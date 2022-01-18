@@ -22,8 +22,7 @@ if(localStorage.getItem('slide2d') == null) {
   hScore.textContent = highScore;
 }
 
-// hammer initialization 
-var canvashammer = new Hammer(canvas);
+const controls = document.querySelector('.controls');
 class GameBoard {
   constructor() {
     this.boxPosition1 = {
@@ -173,19 +172,19 @@ class GameBoard {
       this.boxPosition2.y -= 10;
     }
   };
-  moveBoxesTouch = () => {
-    canvashammer.on('swipeup', () => {
+  moveBoxesControls = (e) => {
+    if(e.target.classList.contains('key-down') && this.boxPosition1.y + this.boxPosition1.w < h) {
       this.boxPosition1.y += 10;
-    });
-    canvashammer.on('swipedown', () => {
+    }
+    if(e.target.classList.contains('key-up') && this.boxPosition1.y >= 10) {
       this.boxPosition1.y -= 10;
-    });
-    canvashammer.on('swipeleft', () => {
+    }
+    if(e.target.classList.contains('key-left') && this.boxPosition2.y + this.boxPosition2.w < h) {
       this.boxPosition2.y += 10;
-    });
-    canvashammer.on('swiperight', () => {
-      this.boxPosition1.y -= 10;
-    });
+    }
+    if (e.target.classList.contains('key-right') && this.boxPosition2.y >= 10) {
+      this.boxPosition2.y -= 10;
+    }
   }
 
   checkCollision = () => {
@@ -231,7 +230,9 @@ const init = () => {
   body.addEventListener("keydown", (e) => {
     game.moveBoxes(e);
   });
-  game.moveBoxesTouch();
+  controls.addEventListener('click', e => {
+      game.moveBoxesControls(e);
+  })
   animate();
 };
 function animate() {
