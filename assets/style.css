@@ -120,6 +120,7 @@ section.controls > div {
     color: hsl(51, 100%, 51%);
     background: #272343;
     border-radius: 8px;
+    user-select: none;
 }
 section.controls div.key-up {
     grid-area : up;

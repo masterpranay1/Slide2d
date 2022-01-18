@@ -41,8 +41,8 @@ class GameBoard {
       x: w * 0.5,
       y: Math.random() * (h - w * 0.015) + w * 0.015,
       r: w * 0.015,
-      vx: -2,
-      vy: 2,
+      vx: -1,
+      vy: 1,
     };
     this.score = 0;
     this.level = 1;
@@ -230,7 +230,8 @@ const init = () => {
   body.addEventListener("keydown", (e) => {
     game.moveBoxes(e);
   });
-  controls.addEventListener('click', e => {
+  controls.addEventListener('touchstart', e => {
+      console.log(e);
       game.moveBoxesControls(e);
   })
   animate();
