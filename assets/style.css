@@ -111,6 +111,7 @@ section.controls {
     '. up .'
     'left down right';
     padding: 0.1em;
+    user-select: none;
 }
 section.controls > div {
     padding: 0.4em 0.8em;

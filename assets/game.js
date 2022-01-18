@@ -172,21 +172,20 @@ class GameBoard {
       this.boxPosition2.y -= 10;
     }
   };
-  moveBoxesControls = (e) => {
-    if(e.target.classList.contains('key-down') && this.boxPosition1.y + this.boxPosition1.w < h) {
+  moveBoxesTouch = (e) => {
+    if(e == 1 && this.boxPosition1.y + this.boxPosition1.w < h) {
       this.boxPosition1.y += 10;
     }
-    if(e.target.classList.contains('key-up') && this.boxPosition1.y >= 10) {
+    if(e == 2 && this.boxPosition1.y >= 10) {
       this.boxPosition1.y -= 10;
     }
-    if(e.target.classList.contains('key-left') && this.boxPosition2.y + this.boxPosition2.w < h) {
+    if(e == 3 && this.boxPosition2.y + this.boxPosition2.w < h) {
       this.boxPosition2.y += 10;
     }
-    if (e.target.classList.contains('key-right') && this.boxPosition2.y >= 10) {
+    if (e == 4 && this.boxPosition2.y >= 10) {
       this.boxPosition2.y -= 10;
     }
   }
-
   checkCollision = () => {
     // check collision between the squares and the ball
     let bx = this.ballPos.x - this.ballPos.r;
@@ -230,10 +229,31 @@ const init = () => {
   body.addEventListener("keydown", (e) => {
     game.moveBoxes(e);
   });
-  controls.addEventListener('touchstart', e => {
-      console.log(e);
-      game.moveBoxesControls(e);
-  })
+  let id;
+  controls.querySelector('.key-down').addEventListener('touchstart', () => {
+    id = setInterval(game.moveBoxesTouch(1), 10);
+  });
+  controls.querySelector('.key-down').addEventListener('touchend', () => {
+    clearInterval(id);
+  });
+  controls.querySelector('.key-up').addEventListener('touchstart', () => {
+    id = setInterval(game.moveBoxesTouch(2), 10);
+  });
+  controls.querySelector('.key-up').addEventListener('touchend', () => {
+    clearInterval(id);
+  });
+  controls.querySelector('.key-left').addEventListener('touchstart', () => {
+    id = setInterval(game.moveBoxesTouch(3), 10);
+  });
+  controls.querySelector('.key-left').addEventListener('touchend', () => {
+    clearInterval(id);
+  });
+  controls.querySelector('.key-right').addEventListener('touchstart', () => {
+    id = setInterval(game.moveBoxesTouch(4), 10);
+  });
+  controls.querySelector('.key-right').addEventListener('touchend', () => {
+    clearInterval(id);
+  });
   animate();
 };
 function animate() {
